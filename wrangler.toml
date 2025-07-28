@@ -1,0 +1,53 @@
+name = "mtproto-cloudflare-worker-wizard"
+main = "dist/index.js"
+compatibility_date = "2023-10-25"
+node_compat = true
+
+[env.production]
+name = "mtproto-cloudflare-worker-wizard-prod"
+
+[env.staging]
+name = "mtproto-cloudflare-worker-wizard-staging"
+
+# KV namespace for session storage
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "sessions_namespace"
+preview_id = "sessions_preview"
+
+# KV namespace for analytics and metrics
+[[kv_namespaces]]
+binding = "ANALYTICS"
+id = "analytics_namespace"
+preview_id = "analytics_preview"
+
+# KV namespace for configuration cache
+[[kv_namespaces]]
+binding = "CONFIG"
+id = "config_namespace"
+preview_id = "config_preview"
+
+# Durable Objects for connection management
+[[durable_objects.bindings]]
+name = "CONNECTION_MANAGER"
+class_name = "ConnectionManager"
+
+# Analytics Engine for advanced metrics
+[[analytics_engine_datasets]]
+binding = "METRICS"
+
+# Rate limiting
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+
+[vars]
+TELEGRAM_DC1 = "149.154.175.50:443"
+TELEGRAM_DC2 = "149.154.167.51:443"
+TELEGRAM_DC3 = "149.154.175.100:443"
+TELEGRAM_DC4 = "149.154.167.91:443"
+TELEGRAM_DC5 = "91.108.56.130:443"
+MAX_CONNECTIONS_PER_IP = "50"
+RATE_LIMIT_RPM = "1000"
+SESSION_TIMEOUT = "3600"
+DEBUG_MODE = "false"
