@@ -1,4 +1,4 @@
-name = "mtproto-cloudflare-worker-wizard"
+name = "mtproto-wizard"
 main = "dist/index.js"
 compatibility_date = "2023-10-25"
 node_compat = true
